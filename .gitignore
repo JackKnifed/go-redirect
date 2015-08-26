@@ -3,6 +3,8 @@
 *.a
 *.so
 
+go-redirect
+
 # Folders
 _obj
 _test
