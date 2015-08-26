@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"flag"
 	"log"
+	"net/http"
 )
 
 var listenPort = flag.Int("port", 80, "port to listen on")
@@ -21,13 +21,13 @@ func redir(w http.ResponseWriter, req *http.Request) {
 		if *resPort == 443 {
 			http.Redirect(w, req, "https://"+req.Host+req.RequestURI, *resCode)
 		} else {
-			http.Redirect(w, req, "https://"+req.Host+":" + string(*resPort)+req.RequestURI, *resCode)
+			http.Redirect(w, req, "https://"+req.Host+":"+string(*resPort)+req.RequestURI, *resCode)
 		}
 	} else {
 		if *resPort == 80 {
-			http.Redirect(w, req, "http://" + req.Host + req.RequestURI, *resCode)
+			http.Redirect(w, req, "http://"+req.Host+req.RequestURI, *resCode)
 		} else {
-			http.Redirect(w, req, "http://" + req.Host + ":" + string(*resPort) + req.RequestURI, *resCode)
+			http.Redirect(w, req, "http://"+req.Host+":"+string(*resPort)+req.RequestURI, *resCode)
 		}
 	}
 }
